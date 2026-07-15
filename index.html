@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12: Preferences & Philanthropy</title>
+    <style>
+        :root {
+            /* Color Palette */
+            --slate-900: #0f172a; --slate-800: #1e293b; --slate-700: #334155; --slate-600: #475569; --slate-200: #e2e8f0; --slate-100: #f1f5f9; --slate-50: #f8fafc;
+            --blue-600: #2563eb; --blue-500: #3b82f6; --blue-100: #dbeafe;
+            --emerald-600: #059669; --emerald-500: #10b981; --emerald-100: #d1fae5;
+            --amber-500: #f59e0b; --amber-400: #fbbf24; --amber-100: #fef3c7;
+            --coral-600: #e11d48; --coral-500: #f43f5e; --coral-100: #ffe4e6;
+            --purple-600: #7c3aed; --purple-500: #8b5cf6; --purple-100: #ede9fe;
+            
+            --text-main: #334155; --text-light: #64748b;
+            
+            /* Spacing & Borders */
+            --radius-lg: 16px; --radius-md: 12px; --radius-sm: 8px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-main); background-color: var(--slate-100); color: var(--text-main); line-height: 1.6; }
+
+        header { background: linear-gradient(135deg, var(--slate-900), var(--blue-600)); color: white; padding: 3rem 2rem; text-align: center; border-bottom: 5px solid var(--emerald-400); }
+        .header-title h1 { font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        .header-title .badge { display: inline-block; background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255,255,255,0.5); padding: 0.25rem 1rem; border-radius: 99px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase; }
+
+        .header-info-container { max-width: 900px; margin: 2rem auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: left; }
+        .info-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 1.5rem; border-radius: var(--radius-md); }
+        .info-card h3 { color: var(--emerald-400); font-size: 1rem; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .info-card ul { list-style: none; color: var(--slate-50); font-size: 0.95rem; }
+        .info-card li { margin-bottom: 0.5rem; display: flex; align-items: flex-start; }
+        .info-card li::before { content: "•"; color: var(--emerald-400); margin-right: 0.5rem; font-weight: bold; }
+
+        .tab-nav-container { background: white; padding: 1rem 2rem; box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100; overflow-x: auto; white-space: nowrap; }
+        .tab-nav { display: flex; gap: 0.5rem; max-width: 1200px; margin: 0 auto; justify-content: center; }
+        .tab-btn { background: var(--slate-100); border: 1px solid var(--slate-200); padding: 0.75rem 1.25rem; border-radius: var(--radius-md); font-family: inherit; font-weight: 600; color: var(--slate-600); cursor: pointer; transition: all 0.2s ease; font-size: 0.95rem; }
+        .tab-btn:hover { background: var(--slate-200); }
+        .tab-btn.active { background: var(--blue-600); color: white; border-color: var(--blue-600); box-shadow: var(--shadow-md); }
+
+        main { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; }
+        .tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { background: white; border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-md); margin-bottom: 2rem; }
+        .section-title { color: var(--slate-900); font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--slate-100); }
+
+        .btn-primary { background: var(--blue-600); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; justify-content: center; text-decoration: none; }
+        .btn-primary:hover { background: var(--blue-500); }
+        .btn-secondary { background: var(--slate-200); color: var(--slate-800); border: none; padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .btn-secondary:hover { background: var(--slate-300); }
+
+        .feedback-banner { padding: 1rem; border-radius: var(--radius-sm); margin-top: 1rem; font-weight: 600; display: none; animation: fadeIn 0.3s; }
+        .feedback-banner.success { display: block; background: var(--emerald-100); color: var(--emerald-600); border: 1px solid var(--emerald-500); }
+        .feedback-banner.error { display: block; background: var(--coral-100); color: var(--coral-600); border: 1px solid var(--coral-600); }
+
+        .quiz-grid { display: grid; gap: 1rem; }
+        .quiz-item { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; background: var(--slate-50); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--slate-200); }
+        .quiz-item select, .quiz-item input { padding: 0.5rem; border: 1px solid var(--slate-300); border-radius: var(--radius-sm); font-family: inherit; }
+
+        .book-ref { display: flex; flex-direction: column; border-left: 4px solid var(--emerald-500); background: var(--emerald-100); padding: 1.5rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin-bottom: 2rem; }
+        .book-badge { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--emerald-700); margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+
+        .grammar-timeline { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+        @media (max-width: 768px) { .grammar-timeline { grid-template-columns: 1fr; } }
+        .grammar-box { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.5rem; position: relative; }
+        .grammar-box h4 { margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;}
+        
+        .formula-block { display: inline-block; padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-family: monospace; font-size: 1.05rem; font-weight: bold; margin-bottom: 0.75rem; color: white; width: 100%; text-align: center;}
+        
+        .external-link-card { background: linear-gradient(135deg, var(--slate-900), var(--slate-800)); color: white; padding: 2.5rem; border-radius: var(--radius-md); text-align: center; box-shadow: var(--shadow-lg); border: 1px solid var(--slate-700); margin-bottom: 1.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+        .external-link-card h3 { color: var(--emerald-400); font-size: 1.5rem; margin-bottom: 1rem; }
+
+        .conversation-card { background: #fffbeb; border-left: 4px solid var(--amber-500); padding: 1.5rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin-bottom: 1.5rem; }
+        
+        /* New Activity Steps Styling */
+        .steps-container { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.5rem; }
+        .step-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--slate-300); }
+        .step-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .step-title { font-weight: bold; color: var(--blue-700); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .hint-box { background: var(--blue-50); border-left: 3px solid var(--blue-400); padding: 1rem; margin-top: 1rem; font-size: 0.9rem; color: var(--slate-700); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="header-title">
+                <span class="badge">Level: Pre-Independent 5 (B1+)</span>
+                <h1>Preferences, Philanthropy & Crisis Response</h1>
+                <p>Unit 11 — Class 12</p>
+            </div>
+            <div class="header-info-container">
+                <div class="info-card">
+                    <h3>📋 Agenda</h3>
+                    <ul>
+                        <li>Grammar Reinforcement: Preferences</li>
+                        <li>Reading: Mother Teresa of Calcutta</li>
+                        <li>Research Task: Humanity's Givers</li>
+                        <li>Speaking: Venezuela Crisis Response</li>
+                        <li>Project Step 3: The Masterclass Hook</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>🎯 Objectives</h3>
+                    <ul>
+                        <li>Accurately use <em>prefer</em> vs. <em>would rather</em> in context.</li>
+                        <li>Read for detail and vocabulary comprehension.</li>
+                        <li>Present research on global philanthropists.</li>
+                        <li>Negotiate crisis decisions using grammar structures.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="tab-nav-container">
+        <nav class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('tab1')">1. Grammar Review</button>
+            <button class="tab-btn" onclick="switchTab('tab2')">2. Reading</button>
+            <button class="tab-btn" onclick="switchTab('tab3')">3. Research Project</button>
+            <button class="tab-btn" onclick="switchTab('tab4')">4. Speaking: Crisis</button>
+            <button class="tab-btn" onclick="switchTab('tab5')" style="background: var(--amber-100); color: var(--amber-800); font-weight: bold; border-color: var(--amber-400);">5. Project Step 3</button>
+        </nav>
+    </div>
+
+    <main>
+        <section id="tab1" class="tab-content active">
+            <div class="card">
+                <div class="book-ref" style="border-left-color: var(--blue-500); background: var(--blue-100);">
+                    <span class="book-badge" style="color: var(--blue-700);">📘 Grammar Reinforcement (Unit 11)</span>
+                    <p style="color: var(--slate-700); font-size: 0.95rem;">You reviewed the rules of preference in the previous class, but this grammar requires repetition. Let's briefly recap the formulas and take the 15-Item Challenge to master the tricky prepositions!</p>
+                </div>
+
+                <h2 class="section-title">The Preference Formulas Recap</h2>
+                
+                <div class="grammar-timeline">
+                    <!-- Prefer (General) -->
+                    <div class="grammar-box">
+                        <h4 style="color: var(--blue-600);">1. Prefer (General Facts)</h4>
+                        <div class="formula-block" style="background: var(--blue-600);">prefer + [V-ing / Noun] + to + [V-ing / Noun]</div>
+                        <ul style="list-style: none; color: var(--slate-700); font-size: 0.95rem;">
+                            <li>• I prefer <strong>donating</strong> to <strong>volunteering</strong>.</li>
+                        </ul>
+                    </div>
+                    <!-- Prefer (Infinitive) -->
+                    <div class="grammar-box">
+                        <h4 style="color: var(--emerald-600);">2. Prefer (Infinitive)</h4>
+                        <div class="formula-block" style="background: var(--emerald-600);">prefer + to [Verb] + rather than + [Base Verb]</div>
+                        <ul style="list-style: none; color: var(--slate-700); font-size: 0.95rem;">
+                            <li>• I prefer <strong>to help</strong> rather than <strong>watch</strong>.</li>
+                        </ul>
+                    </div>
+                    <!-- Would Rather -->
+                    <div class="grammar-box">
+                        <h4 style="color: var(--amber-600);">3. Would Rather (Specific)</h4>
+                        <div class="formula-block" style="background: var(--amber-500);">would rather + [Base Verb] + than + [Base Verb]</div>
+                        <p style="font-size: 0.85rem; color: var(--coral-600); font-weight: bold; margin-bottom: 0.5rem;">NO "to" allowed!</p>
+                        <ul style="list-style: none; color: var(--slate-700); font-size: 0.95rem;">
+                            <li>• I'd rather <strong>give</strong> money than <strong>give</strong> clothes.</li>
+                        </ul>
+                    </div>
+                    <!-- Would Prefer -->
+                    <div class="grammar-box">
+                        <h4 style="color: var(--purple-600);">4. Would Prefer (Specific)</h4>
+                        <div class="formula-block" style="background: var(--purple-500);">would prefer + to [Verb]</div>
+                        <ul style="list-style: none; color: var(--slate-700); font-size: 0.95rem;">
+                            <li>• I would prefer <strong>to focus</strong> on the earthquake victims.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--slate-200);">
+
+                <h2 class="section-title">Grammar Clinic: The 15-Item Challenge</h2>
+                <p style="margin-bottom: 1.5rem;">Select the correct grammar form to complete the sentences based on the formulas above.</p>
+
+                <div class="quiz-grid" id="grammar-quiz" style="grid-template-columns: 1fr 1fr;">
+                    <!-- Populated by JS -->
+                </div>
+                
+                <div style="margin-top: 1.5rem;">
+                    <button class="btn-primary" onclick="checkGrammar()">Submit Grammar Clinic</button>
+                    <div id="grammar-feedback" class="feedback-banner"></div>
+                </div>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--slate-200);">
+                
+                <h2 class="section-title">Productive Task: Personal Preferences</h2>
+                <div style="background: var(--slate-50); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200);">
+                    <p style="margin-bottom: 1rem; color: var(--slate-700);">Complete these sentences about yourself using the correct grammar structures. Be prepared to share with the class!</p>
+                    <ol style="margin-left: 1rem; color: var(--slate-800); line-height: 2.5;">
+                        <li>1. In my free time, I prefer reading books to <input type="text" style="padding: 0.25rem; width: 300px; border: 1px solid var(--slate-300); border-bottom: 2px solid var(--blue-500);">.</li>
+                        <li>2. I'd rather travel the world and volunteer than <input type="text" style="padding: 0.25rem; width: 300px; border: 1px solid var(--slate-300); border-bottom: 2px solid var(--amber-500);">.</li>
+                        <li>3. When making a donation, I prefer to give money rather than <input type="text" style="padding: 0.25rem; width: 300px; border: 1px solid var(--slate-300); border-bottom: 2px solid var(--emerald-500);">.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab2" class="tab-content">
+            <div class="card">
+                <h2 class="section-title">Reading: A Life of Giving</h2>
+                <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">Before we research our own philanthropists, we are going to look at one of the most famous historical figures dedicated to helping humanity: Mother Teresa of Calcutta.</p>
+
+                <div class="external-link-card">
+                    <h3>📖 LiveWorksheets Reading Task</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--slate-300);">Click the button below to open the reading comprehension activity. Read the biography carefully and complete the exercises.</p>
+                    <a href="https://www.liveworksheets.com/worksheet/en/english-second-language-esl/1447605" target="_blank" class="btn-primary" style="background: var(--emerald-500); color: white; padding: 1rem 2rem; font-size: 1.1rem;">Open Reading Activity ➔</a>
+                </div>
+
+                <div style="background: #fffbeb; border-left: 4px solid var(--amber-500); padding: 1.5rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin-top: 2rem;">
+                    <h4 style="color: var(--amber-700); margin-bottom: 0.5rem;">🗣️ Post-Reading Discussion</h4>
+                    <p style="color: var(--slate-800); font-size: 0.95rem;">After finishing the worksheet, discuss these questions with your partner:</p>
+                    <ul style="margin-top: 0.5rem; margin-left: 1.5rem; color: var(--slate-700);">
+                        <li>What surprised you the most about her life?</li>
+                        <li>Why do you think people give up their comfortable lives to help strangers?</li>
+                        <li>Would you rather dedicate your life to a local charity or an international one? Why?</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab3" class="tab-content">
+            <div class="card">
+                <h2 class="section-title">Research & Present: Humanity's Givers</h2>
+                <p style="margin-bottom: 1.5rem;">Mother Teresa is just one example of someone who changed the world. Now it is your turn to find another important donor, philanthropist, or giver to humanity. You will research them online and present them to the class.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+                    <div style="background: var(--slate-50); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200);">
+                        <h4 style="color: var(--blue-600); margin-bottom: 1rem;">💡 Inspiration List</h4>
+                        <ul style="list-style: none; color: var(--slate-700); line-height: 1.8;">
+                            <li>• Bill & Melinda Gates</li>
+                            <li>• Malala Yousafzai</li>
+                            <li>• MrBeast (Jimmy Donaldson)</li>
+                            <li>• Nelson Mandela</li>
+                            <li>• Keanu Reeves</li>
+                            <li>• A local hero from your country!</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 style="margin-bottom: 1rem; color: var(--slate-900);">Presentation Structure</h4>
+                        <p style="color: var(--slate-600); margin-bottom: 1rem; font-size: 0.95rem;">Prepare a 2-minute presentation using the following framework. <strong>You must use the preference grammar in your conclusion!</strong></p>
+                        
+                        <div style="background: white; border: 1px solid var(--slate-300); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 0.5rem;">
+                            <strong>1. The Introduction:</strong> Who are they? Where are they from?
+                        </div>
+                        <div style="background: white; border: 1px solid var(--slate-300); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 0.5rem;">
+                            <strong>2. The Contribution:</strong> What did they donate? (Money, time, resources, advocacy). Who did they help?
+                        </div>
+                        <div style="background: white; border: 1px solid var(--slate-300); padding: 1rem; border-radius: var(--radius-sm);">
+                            <strong>3. The Conclusion (Preferences):</strong> Why did you choose them? <br>
+                            <em style="color: var(--blue-600); font-size: 0.9rem;">"I chose this person because I prefer leaders who... rather than..."</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab4" class="tab-content">
+            <div class="card" style="border-top: 8px solid var(--coral-500);">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h2 class="section-title" style="border: none; margin-bottom: 0;">Operation Rescue: Venezuela</h2>
+                    <p style="color: var(--coral-600); font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em;">Urgent Crisis Response Negotiation</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <!-- Left Side: The Scenario -->
+                    <div>
+                        <div style="background: var(--slate-900); color: white; padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; box-shadow: var(--shadow-lg);">
+                            <h4 style="color: var(--coral-400); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">🚨 The Scenario</h4>
+                            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--slate-200);">
+                                Last week, a massive earthquake struck several regions in Venezuela, causing significant damage to infrastructure, hospitals, and homes. Thousands of people are displaced.
+                                <br><br>
+                                You and your partner are directors of an International Relief NGO. You have received an emergency budget of <strong>$500,000</strong>. You cannot fund everything. You must debate and choose how to allocate the funds.
+                            </p>
+                        </div>
+
+                        <table class="matrix-table" style="width: 100%; border-collapse: collapse; margin-bottom: 1rem; background: white;">
+                            <tr>
+                                <th style="background: var(--slate-100); padding: 1rem; border: 1px solid var(--slate-200);">Sector</th>
+                                <th style="background: var(--slate-100); padding: 1rem; border: 1px solid var(--slate-200);">Option A ($250k)</th>
+                                <th style="background: var(--slate-100); padding: 1rem; border: 1px solid var(--slate-200);">Option B ($250k)</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem; border: 1px solid var(--slate-200); font-weight: bold;">Health</td>
+                                <td style="padding: 1rem; border: 1px solid var(--slate-200);">Send mobile surgical teams</td>
+                                <td style="padding: 1rem; border: 1px solid var(--slate-200);">Ship 10 tons of medicine</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem; border: 1px solid var(--slate-200); font-weight: bold;">Shelter</td>
+                                <td style="padding: 1rem; border: 1px solid var(--slate-200);">Build heavy-duty tent camps</td>
+                                <td style="padding: 1rem; border: 1px solid var(--slate-200);">Repair damaged apartments</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem; border: 1px solid var(--slate-200); font-weight: bold;">Food</td>
+                                <td style="padding: 1rem; border: 1px solid var(--slate-200);">Airdrop ready-to-eat meals</td>
+                                <td style="padding: 1rem; border: 1px solid var(--slate-200);">Fund local community kitchens</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Right Side: Steps & Hints (Replacing the Rubric) -->
+                    <div class="steps-container">
+                        <h3 style="color: var(--slate-900); margin-bottom: 1.5rem; border-bottom: 2px solid var(--slate-200); padding-bottom: 0.5rem;">How to Execute This Mission</h3>
+                        
+                        <div class="step-item">
+                            <div class="step-title"><span>⏱️</span> Step 1: Solo Strategy (3 mins)</div>
+                            <p style="font-size: 0.95rem; color: var(--slate-700);">Review the matrix. Choose exactly <strong>TWO</strong> options you want to fund (Total $500k). You must leave one sector completely unfunded for now. Write down your reasons.</p>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-title"><span>🗣️</span> Step 2: The Negotiation (10 mins)</div>
+                            <p style="font-size: 0.95rem; color: var(--slate-700);">Pair up with your co-director. You must agree on the final 2 choices. You <strong>must</strong> use preference grammar to argue your points.</p>
+                            
+                            <div class="hint-box">
+                                <strong>Use these phrases to argue:</strong><br><br>
+                                "I <strong>would rather fund</strong> mobile surgical teams <strong>than ship</strong> medicine, because..."<br><br>
+                                "I <strong>prefer building</strong> tent camps <strong>to repairing</strong> apartments right now, because..."<br><br>
+                                "I <strong>would prefer to</strong> fund local kitchens, but I understand your point."
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-title"><span>🎤</span> Step 3: Press Conference (5 mins)</div>
+                            <p style="font-size: 0.95rem; color: var(--slate-700);">Stand up and announce your team's final decision to the class. Explain why you preferred those specific options over the alternatives.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab5" class="tab-content">
+            <div class="card" style="background: linear-gradient(135deg, var(--slate-900), var(--slate-800)); color: white; border-top: 8px solid var(--amber-400);">
+                <div style="text-align: center; padding: 2rem 0;">
+                    <span style="background: var(--amber-500); color: var(--slate-900); padding: 0.25rem 0.75rem; border-radius: 99px; font-weight: bold; font-size: 0.875rem; text-transform: uppercase;">Unit 11 Project — Step 3</span>
+                    <h2 style="font-size: 2.5rem; margin: 1rem 0; color: white;">🎓 The Masterclass: The Hook</h2>
+                    <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto; color: var(--slate-300);">
+                        In Step 2, you planned how to cater to visual and auditory learners. Today, you must write the "Hook"—the very first 30 seconds of your presentation designed to grab their attention immediately!
+                    </p>
+                </div>
+                
+                <div style="background: white; color: var(--slate-900); padding: 2rem; border-radius: var(--radius-md); max-width: 800px; margin: 0 auto; box-shadow: var(--shadow-sm);">
+                    <h3 style="color: var(--blue-600); border-bottom: 2px solid var(--slate-100); padding-bottom: 0.5rem; margin-bottom: 1rem;">Task: Writing the Introduction</h3>
+                    <p style="margin-bottom: 1.5rem;">A good presentation doesn't start with "Hello, my name is...". It starts with a question, a shocking fact, or a short story. Draft your hook below.</p>
+                    
+                    <div style="background: var(--slate-50); padding: 1.5rem; border: 1px solid var(--slate-200); border-radius: var(--radius-sm);">
+                        
+                        <strong style="display: block; margin-bottom: 0.5rem; color: var(--blue-700);">Choose your strategy:</strong>
+                        <select style="width: 100%; padding: 0.75rem; margin-bottom: 1.5rem; border: 1px solid var(--slate-300); border-radius: var(--radius-sm); font-family: inherit;">
+                            <option>Strategy A: Ask a thought-provoking question.</option>
+                            <option>Strategy B: Share a surprising statistic.</option>
+                            <option>Strategy C: Tell a very short personal story.</option>
+                        </select>
+                        
+                        <strong style="display: block; margin-bottom: 0.5rem; color: var(--emerald-700);">Draft your 30-Second Hook:</strong>
+                        <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: 0.5rem;">Write out exactly what you will say to open your Masterclass.</p>
+                        <textarea placeholder="e.g., Have you ever wondered why some people can remember thousands of numbers? Today, I am going to show you the secret..." style="width: 100%; height: 120px; padding: 0.75rem; border: 1px solid var(--slate-300); border-radius: var(--radius-sm); font-family: inherit; resize: vertical;"></textarea>
+                        
+                    </div>
+                    <p style="text-align: center; margin-top: 1.5rem; font-weight: bold; color: var(--coral-600);">Next class, we will finalize the script and perform!</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Tab Navigation
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Grammar Clinic Data (Reused from Class 10 to ensure reinforcement)
+        const grammarData = [
+            { text: "1. I prefer reading historical books [?] watching documentaries.", ans: "to", opts: ["to", "than", "rather than"] },
+            { text: "2. I'd rather study in the library [?] study at home.", ans: "than", opts: ["to", "than", "rather than"] },
+            { text: "3. Many people prefer to learn in a class [?] learn on their own.", ans: "rather than", opts: ["to", "than", "rather than"] },
+            { text: "4. Would you [?] learn Chinese or Japanese?", ans: "rather", opts: ["rather", "prefer", "prefer to"] },
+            { text: "5. I would [?] to major in chemistry next year.", ans: "prefer", opts: ["rather", "prefer", "rather than"] },
+            { text: "6. Do you prefer electronic books [?] paper books?", ans: "to", opts: ["to", "than", "rather than"] },
+            { text: "7. She prefers [?] information rather than reading it.", ans: "to hear", opts: ["hear", "to hear", "hearing"] },
+            { text: "8. I prefer [?] notes alone to studying in a group.", ans: "going through", opts: ["go through", "to go through", "going through"] },
+            { text: "9. I would rather [?] up a language by talking than taking a class.", ans: "pick", opts: ["pick", "picking", "to pick"] },
+            { text: "10. He prefers [?] active rather than sit still.", ans: "to be", opts: ["be", "being", "to be"] },
+            { text: "11. Visual learners would rather [?] by seeing.", ans: "learn", opts: ["learn", "learning", "to learn"] },
+            { text: "12. I'd prefer to write down my notes [?] type them.", ans: "rather than", opts: ["to", "than", "rather than"] },
+            { text: "13. They prefer working in groups [?] working alone.", ans: "to", opts: ["to", "than", "rather than"] },
+            { text: "14. Would you rather [?] a textbook or watch a video?", ans: "read", opts: ["read", "reading", "to read"] },
+            { text: "15. We would prefer [?] the lecture online tonight.", ans: "to watch", opts: ["watch", "watching", "to watch"] }
+        ];
+
+        const grammarContainer = document.getElementById('grammar-quiz');
+        grammarData.forEach((item, index) => {
+            const parts = item.text.split('[?]');
+            let optsHTML = `<option value="">Select...</option>`;
+            item.opts.forEach(opt => optsHTML += `<option value="${opt}">${opt}</option>`);
+            
+            grammarContainer.innerHTML += `
+                <div style="background: white; padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--slate-200);">
+                    ${parts[0]} <select id="gram-q${index}" style="font-weight: bold; color: var(--blue-700);">${optsHTML}</select> ${parts[1]}
+                </div>
+            `;
+        });
+
+        function checkGrammar() {
+            let score = 0;
+            grammarData.forEach((item, index) => {
+                const select = document.getElementById(`gram-q${index}`);
+                if (select.value === item.ans) {
+                    select.style.borderColor = "var(--emerald-500)";
+                    select.style.backgroundColor = "var(--emerald-100)";
+                    score++;
+                } else {
+                    select.style.borderColor = "var(--coral-600)";
+                    select.style.backgroundColor = "var(--coral-100)";
+                }
+            });
+            const feedback = document.getElementById('grammar-feedback');
+            feedback.className = `feedback-banner ${score === 15 ? 'success' : 'error'}`;
+            feedback.innerHTML = `Score: ${score}/15. ${score === 15 ? 'Perfect grammar! You are ready for the speaking task.' : 'Review the formulas: Prefer uses TO / Rather Than, Would Rather uses THAN.'}`;
+        }
+    </script>
+</body>
+</html>
